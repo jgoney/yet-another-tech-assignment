@@ -2,6 +2,26 @@
 
 Your assignment is to make an app that displays 3-week treatment program. Treatment program used as input is described in JSON file and the desired output is presented in a design.
 
+## Implementation notes
+
+The app is built with [React](https://react.dev/) and uses [TypeScript](https://www.typescriptlang.org/). It uses [Vite](https://vitejs.dev/) as a dev server and builder, and [Bun](https://bun.sh/) as a command runner.
+
+## Quickstart
+
+Ensure you have Bun installed, and then:
+
+```bash
+# Clone this repo and navigate into repo:
+git clone git@github.com:meru-health/technical-assignment-justin-goney.git
+cd technical-assignment-justin-goney
+
+# Install dependencies
+bun install
+
+# Run the dev server
+bun run dev
+```
+
 ## Input Format
 
 Example input for the 3-week treatment program is located in [examples/program.json](examples/program.json). The input has the following format:
@@ -32,16 +52,16 @@ Your app should match the design in the picture above using the following specs:
 
 ### Colors
 
-* Black: `rgba(0, 0, 0, 0.8)`
-* Green: `rgb(93, 175, 116)`
-* White: `rgb(255, 255, 255)`
+- Black: `rgba(0, 0, 0, 0.8)`
+- Green: `rgb(93, 175, 116)`
+- White: `rgb(255, 255, 255)`
 
 ### Text Styles
 
-* `h1` [Fjalla One 700](https://fonts.google.com/?query=Fjalla+One) `48px / 1.3`
-* `h2` [Libre Franklin 700](https://fonts.google.com/?query=Libre+Franklin) `64px`
-* `h3` [Libre Franklin 400](https://fonts.google.com/?query=Libre+Franklin) `10px / 1.2`
-* `th` [Work Sans 700](https://fonts.google.com/?query=Work+Sans) `16px`
+- `h1` [Fjalla One 700](https://fonts.google.com/?query=Fjalla+One) `48px / 1.3`
+- `h2` [Libre Franklin 700](https://fonts.google.com/?query=Libre+Franklin) `64px`
+- `h3` [Libre Franklin 400](https://fonts.google.com/?query=Libre+Franklin) `10px / 1.2`
+- `th` [Work Sans 700](https://fonts.google.com/?query=Work+Sans) `16px`
 
 ## Tech
 
@@ -55,4 +75,4 @@ You should at least update the `README.md` with installation and running instruc
 
 **Remember to check that you have committed all required files and instructions before submitting the pull request** :white_check_mark: Good way to check this is to clone the repository into different folder and follow the instructions you have written to run the app.
 
-***You have the option to receive a compensation of 120 € (gross salary) for the work on this test project by providing your tax card and your bank account IBAN number. If you are interested in this option, please let us know via email me when you submit your solution.***
+**_You have the option to receive a compensation of 120 € (gross salary) for the work on this test project by providing your tax card and your bank account IBAN number. If you are interested in this option, please let us know via email me when you submit your solution._**

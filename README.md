@@ -4,7 +4,12 @@ Your assignment is to make an app that displays 3-week treatment program. Treatm
 
 ## Implementation notes
 
-The app is built with [React](https://react.dev/) and uses [TypeScript](https://www.typescriptlang.org/). It uses [Vite](https://vitejs.dev/) as a dev server and builder, and [Bun](https://bun.sh/) as a command runner.
+The app is built with [React](https://react.dev/) and uses [TypeScript](https://www.typescriptlang.org/). Additionally, it uses:
+
+- [Vite](https://vitejs.dev/) as a dev server and builder
+- [Bun](https://bun.sh/) as a command runner
+- [ESLint](https://eslint.org/) for linting (code quality)
+- [Prettier](https://prettier.io/) for code formatting
 
 ## Quickstart
 
@@ -20,6 +25,16 @@ bun install
 
 # Run the dev server
 bun run dev
+```
+
+Additional commands:
+
+```bash
+# Run ESLint
+bun run lint
+
+# Run Prettier
+bun run format
 ```
 
 ## Input Format

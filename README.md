@@ -10,6 +10,7 @@ The app is built with [React](https://react.dev/) and uses [TypeScript](https://
 - [Bun](https://bun.sh/) as a command runner
 - [ESLint](https://eslint.org/) for linting (code quality)
 - [Prettier](https://prettier.io/) for code formatting
+- [Vitest](https://vitest.dev/) for testing
 
 ## Quickstart
 
@@ -35,6 +36,12 @@ bun run lint
 
 # Run Prettier
 bun run format
+
+# Run tests
+bun run test
+
+# Run tests with coverage
+bun run coverage
 ```
 
 ## Input Format

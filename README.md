@@ -11,6 +11,7 @@ The app is built with [React](https://react.dev/) and uses [TypeScript](https://
 - [ESLint](https://eslint.org/) for linting (code quality)
 - [Prettier](https://prettier.io/) for code formatting
 - [Vitest](https://vitest.dev/) for testing
+- [Storybook](https://storybook.js.org/) for cataloging, examiningm and testing components in isolation
 
 ## Quickstart
 
@@ -42,6 +43,12 @@ bun run test
 
 # Run tests with coverage
 bun run coverage
+
+# Launch Storybook server to examine components
+bun run storybook
+
+# Build Storybook to be deployed to a host for collaboration
+bun run build-storybook
 ```
 
 ## Input Format

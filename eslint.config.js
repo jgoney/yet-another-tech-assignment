@@ -9,7 +9,7 @@ export default [
       "no-undef": "warn",
     },
   },
-  { ignores: ["dist/"] },
+  { ignores: ["dist/", "storybook-static/"] },
 
   eslintConfigPrettier,
 ];

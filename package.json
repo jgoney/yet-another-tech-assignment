@@ -10,13 +10,19 @@
     "format": "prettier . --write",
     "lint": "bunx eslint .",
     "test": "vitest",
+    "tsc": "tsc",
     "coverage": "vitest run --coverage",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@fontsource-variable/libre-franklin": "^5.0.20",
+    "@fontsource-variable/work-sans": "^5.0.20",
+    "@fontsource/fjalla-one": "^5.0.14",
+    "date-fns": "^3.6.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "styled-components": "^6.1.12"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.7.0",
@@ -24,7 +30,6 @@
     "@storybook/addon-essentials": "^8.2.9",
     "@storybook/addon-interactions": "^8.2.9",
     "@storybook/addon-links": "^8.2.9",
-    "@storybook/addon-onboarding": "^8.2.9",
     "@storybook/addon-themes": "^8.2.9",
     "@storybook/blocks": "^8.2.9",
     "@storybook/react": "^8.2.9",

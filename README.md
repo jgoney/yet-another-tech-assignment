@@ -4,7 +4,7 @@ Your assignment is to make an app that displays 3-week treatment program. Treatm
 
 ## Implementation notes
 
-The app is built with [React](https://react.dev/) and uses [TypeScript](https://www.typescriptlang.org/). Additionally, it uses:
+The app is built with [React](https://react.dev/) and uses [TypeScript](https://www.typescriptlang.org/). Styling is handled by [styled-components](https://styled-components.com/). Additionally, it uses:
 
 - [Vite](https://vitejs.dev/) as a dev server and builder
 - [Bun](https://bun.sh/) as a command runner
@@ -43,6 +43,9 @@ bun run test
 
 # Run tests with coverage
 bun run coverage
+
+# Check for TypeScript compiler errors
+bun run tsc
 
 # Launch Storybook server to examine components
 bun run storybook

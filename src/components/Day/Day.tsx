@@ -2,7 +2,7 @@ import * as S from "./Day.styled";
 
 interface DayProps {
   activityTitle: string;
-  date: number;
+  date: number | string;
   isToday: boolean;
 }
 
@@ -17,4 +17,8 @@ const Day = ({ activityTitle, date, isToday }: DayProps) => {
   );
 };
 
-export { Day };
+const Placeholder = () => {
+  return <S.Wrapper $isToday={false} $hasActivity={false}></S.Wrapper>;
+};
+
+export { Day, Placeholder };

@@ -1,1 +1,1 @@
-export { Day } from "./Day";
+export { Day, Placeholder } from "./Day";

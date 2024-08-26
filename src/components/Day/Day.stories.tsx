@@ -8,6 +8,11 @@ const meta: Meta<typeof Day> = {
     activityTitle: "The Negativity Spiral",
     date: 12,
   },
+  argTypes: {
+    date: {
+      control: { type: "number" },
+    },
+  },
 };
 
 export default meta;

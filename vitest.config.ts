@@ -1,5 +1,3 @@
-/// <reference types="vitest/config" />
-
 import { defineConfig, coverageConfigDefaults } from "vitest/config";
 
 export default defineConfig({

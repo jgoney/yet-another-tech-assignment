@@ -3,7 +3,11 @@ import styled from "styled-components";
 import { Colors } from "../../styles/common/colors";
 import { FontDefs } from "../../styles/common/typography";
 
-const Wrapper = styled.div`
+interface Props {
+  $isFirst?: boolean;
+}
+
+const Wrapper = styled.div<Props>`
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
@@ -12,6 +16,8 @@ const Wrapper = styled.div`
   width: 10rem;
   padding: 1rem;
   text-align: center;
+
+  ${({ $isFirst }) => ($isFirst ? "grid-column-start: 1;" : "")}
 `;
 
 const DayName = styled.div`

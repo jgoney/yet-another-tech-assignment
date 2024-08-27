@@ -3,14 +3,12 @@ import styled from "styled-components";
 import { Colors } from "../../styles/common/colors";
 import { FontDefs } from "../../styles/common/typography";
 
-interface WrapperProps {
+interface Props {
   $isToday: boolean;
   $hasActivity: boolean;
 }
 
-type ActivityTitleProps = Pick<WrapperProps, "$isToday">;
-
-const Wrapper = styled.div<WrapperProps>`
+const Wrapper = styled.div<Pick<Props, "$isToday">>`
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
@@ -21,14 +19,14 @@ const Wrapper = styled.div<WrapperProps>`
   padding: 1rem;
   text-align: center;
 
-  background-color: ${({ $isToday }: WrapperProps): string => {
+  background-color: ${({ $isToday }): string => {
     if ($isToday) {
       return Colors.Green;
     }
     return Colors.White;
   }};
 
-  ${({ $isToday }: WrapperProps): string => {
+  ${({ $isToday }): string => {
     if ($isToday) {
       return `
         color: ${Colors.White};
@@ -42,16 +40,26 @@ const Wrapper = styled.div<WrapperProps>`
   }};
 `;
 
-const DayNumber = styled.div`
+const DayNumber = styled.div<Props>`
   ${FontDefs.h2}
   margin-top: 2rem;
+
+  color: ${({ $isToday, $hasActivity }): string => {
+    if ($isToday) {
+      return Colors.White;
+    }
+    if ($hasActivity) {
+      return Colors.Green;
+    }
+    return Colors.Black;
+  }};
 `;
 
-const ActivityTitle = styled.p<ActivityTitleProps>`
+const ActivityTitle = styled.p<Pick<Props, "$isToday">>`
   ${FontDefs.th}
   text-transform: uppercase;
 
-  color: ${({ $isToday }: ActivityTitleProps): string => {
+  color: ${({ $isToday }): string => {
     if ($isToday) {
       return Colors.White;
     }
@@ -61,4 +69,4 @@ const ActivityTitle = styled.p<ActivityTitleProps>`
 
 export { Wrapper, DayNumber, ActivityTitle };
 
-export type { WrapperProps };
+export type { Props };

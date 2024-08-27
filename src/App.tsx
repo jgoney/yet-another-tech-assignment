@@ -1,10 +1,14 @@
-import "./App.css";
+import React from "react";
+
+import { Calendar } from "./views/Calendar";
+
+import * as S from "./App.styled";
 
 function App() {
   return (
-    <div className="App">
-      <p>Hello world</p>
-    </div>
+    <S.AppWrapper className="App">
+      <Calendar />
+    </S.AppWrapper>
   );
 }
 

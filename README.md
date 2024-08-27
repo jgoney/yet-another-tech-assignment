@@ -38,14 +38,20 @@ bun run lint
 # Run Prettier
 bun run format
 
-# Run tests
+# Run tests (in watch mode)
 bun run test
+
+# Run tests (single run)
+bun run test-single
 
 # Run tests with coverage
 bun run coverage
 
 # Check for TypeScript compiler errors
 bun run tsc
+
+# "check" is a convenience wrapper for running tests, tsc, ESLint, and Prettier all in one go
+bun run check
 
 # Launch Storybook server to examine components
 bun run storybook

@@ -14,10 +14,11 @@ const Wrapper = styled.div<Pick<Props, "$isToday">>`
   justify-content: flex-start;
   align-items: center;
   border: 0.1rem solid ${Colors.Green};
-  width: 10rem;
-  aspect-ratio: 1 / 1;
   padding: 1rem;
+  aspect-ratio: 1 / 1;
   text-align: center;
+  grid-column: span 1;
+  width: 8rem;
 
   background-color: ${({ $isToday }): string => {
     if ($isToday) {
@@ -40,9 +41,11 @@ const Wrapper = styled.div<Pick<Props, "$isToday">>`
   }};
 `;
 
-const DayNumber = styled.div<Props>`
+const DayNumber = styled.h2<Props>`
+  // Remove browser styling on h2 from i.e., Safari
+  margin: 0;
+
   ${FontDefs.h2}
-  margin-top: 2rem;
 
   color: ${({ $isToday, $hasActivity }): string => {
     if ($isToday) {
@@ -55,8 +58,11 @@ const DayNumber = styled.div<Props>`
   }};
 `;
 
-const ActivityTitle = styled.p<Pick<Props, "$isToday">>`
-  ${FontDefs.th}
+const ActivityTitle = styled.h3<Pick<Props, "$isToday">>`
+  // Remove browser styling on h3 from i.e., Safari
+  margin: 0;
+
+  ${FontDefs.h3}
   text-transform: uppercase;
 
   color: ${({ $isToday }): string => {

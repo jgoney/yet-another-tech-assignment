@@ -5,6 +5,7 @@ import { FontDefs } from "../../styles/common/typography";
 
 interface Props {
   $isFirst?: boolean;
+  $isTop?: boolean;
 }
 
 const Wrapper = styled.div<Props>`
@@ -13,9 +14,13 @@ const Wrapper = styled.div<Props>`
   justify-content: flex-start;
   align-items: center;
   border: 0.1rem solid ${Colors.Green};
-  width: 10rem;
-  padding: 1rem;
+
+  ${({ $isTop }) => ($isTop ? "border-top-width: 0.15rem;" : "")}
+
+  padding: 0.5rem;
   text-align: center;
+  grid-column: span 1;
+  min-width: 4vw;
 
   ${({ $isFirst }) => ($isFirst ? "grid-column-start: 1;" : "")}
 `;

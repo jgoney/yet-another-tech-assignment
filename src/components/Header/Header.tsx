@@ -9,24 +9,30 @@ import type { Weekdays } from "../../types";
 interface HeaderProps {
   dayName: Weekdays;
   isFirst?: boolean;
+  isTop?: boolean;
 }
 
-const HeaderDay = ({ dayName, isFirst }: HeaderProps) => {
+const HeaderDay = ({ dayName, isFirst, isTop }: HeaderProps) => {
   const shortDay = dayName.slice(0, 3);
 
   return (
-    <S.Wrapper $isFirst={isFirst}>
+    <S.Wrapper $isFirst={isFirst} $isTop={isTop}>
       <S.DayName>{shortDay}</S.DayName>
     </S.Wrapper>
   );
 };
 
-const Header = () => {
+const Header = ({ isTop }: Pick<HeaderProps, "isTop">) => {
   return (
     <>
       {Object.keys(WeekdayEnum).map((elem, i) => {
         return (
-          <HeaderDay key={i} dayName={elem as Weekdays} isFirst={i === 0} />
+          <HeaderDay
+            key={i}
+            dayName={elem as Weekdays}
+            isFirst={i === 0}
+            isTop={isTop}
+          />
         );
       })}
     </>

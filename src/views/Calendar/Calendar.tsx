@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import {
   addDays,
@@ -17,6 +17,7 @@ import {
 import { Day, Placeholder } from "../../components/Day";
 import { Header } from "../../components/Header";
 import { WeekdayEnum } from "../../types";
+import { useFetchProgramData } from "../../hooks";
 
 import * as S from "./Calendar.styled";
 
@@ -31,30 +32,6 @@ interface Activity {
 type Week = Array<Activity>;
 
 type Plan = Record<WeekNumber, Week>;
-
-interface ProgramFetcher {
-  loading: boolean;
-  program?: Plan;
-  error?: Error;
-}
-
-const getData = async (): Promise<ProgramFetcher> => {
-  try {
-    const res = await fetch("/program.json");
-    const json = await res.json();
-    return new Promise<ProgramFetcher>((resolve) => {
-      resolve({ program: json, loading: false });
-    });
-  } catch (error) {
-    return new Promise<ProgramFetcher>((resolve) => {
-      // TODO: handle actual error here
-      resolve({
-        error: new Error(`an error occurred: ${error}`),
-        loading: false,
-      });
-    });
-  }
-};
 
 interface ActivityWithDate extends Activity {
   date: Date;
@@ -150,28 +127,22 @@ interface CalendarProps {
 }
 
 const Calendar = ({ date }: CalendarProps) => {
-  const [data, setData] = useState<ProgramFetcher>({
-    loading: true,
-  });
+  const { loading, program, error } = useFetchProgramData();
 
-  const { loading, program, error } = data;
-
-  useEffect(() => {
-    getData().then(setData);
-  }, []);
-
+  // TODO: implement a proper loading spinner
   if (loading) {
     return <p>Loading...</p>;
   }
 
+  // TODO: implement a proper error page
   if (error) {
-    return <p>Error!</p>;
+    return <p>Error! {error.message}</p>;
   }
 
   return (
     <S.CalGrid>
       <S.CalTitle>Weekly Program</S.CalTitle>
-      <Header />
+      <Header isTop={true} />
       {getCalendar({ program, date }).map(
         (date: ActivityWithDate | null, i) => {
           if (date) {
@@ -179,7 +150,7 @@ const Calendar = ({ date }: CalendarProps) => {
               <Day
                 key={i}
                 isToday={isToday(date.date)}
-                date={format(date.date, "dd")}
+                date={format(date.date, "d")}
                 activityTitle={date.title}
               />
             );

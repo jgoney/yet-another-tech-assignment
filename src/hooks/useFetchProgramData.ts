@@ -34,7 +34,7 @@ function useFetchProgramData(): ProgramFetcher {
       } catch (error) {
         // TODO: handle actual error here
         setData({
-          error: new Error(`an error occurred: ${error}`),
+          error: new Error(`${error}`),
           loading: false,
         });
       }

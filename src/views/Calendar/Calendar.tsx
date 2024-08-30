@@ -4,21 +4,12 @@ import { format, isToday } from "date-fns";
 
 import { Day, Placeholder } from "../../components/Day";
 import { Header } from "../../components/Header";
-import { WeekdayEnum } from "../../types";
 import { useFetchProgramData } from "../../hooks";
 import { getCalendar } from "./helpers";
 
 import * as S from "./Calendar.styled";
 
-interface Activity {
-  weekday: WeekdayEnum;
-  title: string;
-  completed: boolean;
-}
-
-interface ActivityWithDate extends Activity {
-  date: Date;
-}
+import type { Activity } from "../../types";
 
 interface CalendarProps {
   date?: Date;
@@ -45,14 +36,14 @@ const Calendar = ({ date }: CalendarProps) => {
     <S.CalGrid>
       <S.CalTitle>Weekly Program</S.CalTitle>
       <Header isTop={true} />
-      {calendar.map((date: ActivityWithDate | null, i) => {
-        if (date) {
+      {calendar.map((activity: Activity | null, i) => {
+        if (activity) {
           return (
             <Day
               key={i}
-              isToday={isToday(date.date)}
-              date={format(date.date, "d")}
-              activityTitle={date.title}
+              isToday={isToday(activity.date)}
+              date={format(activity.date, "d")}
+              activityTitle={activity.title}
             />
           );
         }

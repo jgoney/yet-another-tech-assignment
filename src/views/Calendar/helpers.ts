@@ -11,30 +11,13 @@ import {
   isMonday,
 } from "date-fns";
 
-import { WeekdayEnum } from "../../types";
-
-type WeekNumber = `week${number}`;
-
-interface Activity {
-  weekday: WeekdayEnum;
-  title: string;
-  completed: boolean;
-}
-type Week = Array<Activity>;
-
-interface ActivityWithDate extends Activity {
-  date: Date;
-}
-type Plan = Record<WeekNumber, Week>;
+import type { Activity, Plan, Week, WeekNumber } from "../../types";
 
 interface GetCalendarParams {
   program?: Plan;
   date?: Date;
 }
-const getCalendar = ({
-  date,
-  program,
-}: GetCalendarParams): Array<ActivityWithDate> => {
+const getCalendar = ({ date, program }: GetCalendarParams): Array<Activity> => {
   // Return an empty array in the unlikely event that this is called with no program data
   if (!program) {
     return [];
@@ -101,7 +84,7 @@ const getCalendar = ({
       return {
         date: d,
         title: todaysActivity?.title || "",
-      } as ActivityWithDate;
+      } as Activity;
     });
 
   return frontPlaceholders.concat(days, endPlaceholders);

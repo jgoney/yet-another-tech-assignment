@@ -1,18 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { WeekdayEnum } from "../types";
-
-type WeekNumber = `week${number}`;
-
-interface Activity {
-  weekday: WeekdayEnum;
-  title: string;
-  completed: boolean;
-}
-
-type Week = Array<Activity>;
-
-type Plan = Record<WeekNumber, Week>;
+import type { Plan } from "../types";
 
 interface ProgramFetcher {
   loading: boolean;

@@ -57,6 +57,5 @@ describe("Calendar", () => {
     await waitFor(() => {
       expect(screen.getByText(/Error!/)).toBeDefined();
     });
-    screen.debug();
   });
 });

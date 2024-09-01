@@ -10,8 +10,21 @@ The app is built with [React](https://react.dev/) and uses [TypeScript](https://
 - [Bun](https://bun.sh/) as a command runner
 - [ESLint](https://eslint.org/) for linting (code quality)
 - [Prettier](https://prettier.io/) for code formatting
-- [Vitest](https://vitest.dev/) for testing
-- [Storybook](https://storybook.js.org/) for cataloging, examiningm and testing components in isolation
+- [Vitest](https://vitest.dev/), [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/), and [MSW](https://mswjs.io) for testing
+- [Storybook](https://storybook.js.org/) for cataloging, examining, and testing components in isolation
+- [date-fns](https://date-fns.org) for working with dates
+
+Common features/requirements which were omitted from the scope of this exercise:
+
+- Localization (i18n)
+- Accessibility (a11y)
+- Responsive layout (this is currently optimized for desktop only)
+- Light and dark modes
+
+Additionally:
+
+- The typography spec calls for [Fjalla One 700](https://fonts.google.com/?query=Fjalla+One), which (as far as I can tell) doesn't seem to be available as a webfont
+- The spec doesn't really say what should happen in case "completed" activities should fall in the future. I made the call that "completed" activities in the future should _not_ be shown.
 
 ## Quickstart
 
@@ -32,6 +45,9 @@ bun run dev
 Additional commands:
 
 ```bash
+# Build app to be deployed on a server
+bun run build
+
 # Run ESLint
 bun run lint
 

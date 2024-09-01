@@ -10,6 +10,7 @@ import {
   isSameMonth,
   isMonday,
   isBefore,
+  isSameDay,
 } from "date-fns";
 
 import type { Activity, Plan, WeekNumber } from "../../types";
@@ -50,6 +51,7 @@ const getCalendar = ({
       const isFullWeek = isSameMonth(startOfISOWeek(d), endOfISOWeek(d));
       const isNewWeek = isMonday(d);
       const isPast = isBefore(d, today);
+      const isToday = isSameDay(d, today);
 
       if (isFullWeek) {
         if (isNewWeek) {
@@ -80,12 +82,12 @@ const getCalendar = ({
           for (const activity of plan) {
             if (activity.weekday === dayName) {
               if (activity.completed) {
-                // if weekday matches and activity is completed, show no matter what
+                // if weekday matches and activity is completed, show if in the past or today.
                 // n.b., there shouldn't be completed tasks in the future, but this isn't
                 // really defined in the spec.
                 return {
                   date: d,
-                  title: activity.title,
+                  title: isPast || isToday ? activity.title : "",
                 };
               }
               // otherwise, add activity to queue to be shown later

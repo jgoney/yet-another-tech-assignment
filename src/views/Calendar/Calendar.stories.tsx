@@ -50,3 +50,9 @@ export const IncompletesPushedOffThePage: Story = {
     date: new Date(2024, 7, 29),
   },
 };
+
+export const CompletedInTheFutureHidden: Story = {
+  args: {
+    date: new Date(2024, 7, 7),
+  },
+};

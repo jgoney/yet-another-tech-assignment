@@ -201,6 +201,30 @@ describe("Calendar", () => {
       .map((title) => expect(screen.getByText(title)).toBeDefined());
   });
 
+  it(`hides completed activities if they're in the "future"`, async () => {
+    render(<Calendar date={new Date(2024, 7, 7)} />);
+
+    // Wait for title heading to be visible (i.e., data has loaded)
+    await waitFor(() => {
+      expect(screen.getByText(/Weekly Program/i)).toBeDefined();
+    });
+
+    // Current day is the 7th. Completed activity in the past (the 5th) should show
+    const day5 = screen.getByTestId("day-5");
+    expect(within(day5).getByText("The Meru Health Program")).toBeDefined();
+    expect(within(day5).getByText("5")).toBeDefined();
+
+    // Completed activity on the current day should be shown (in case you did it earlier in the day)
+    const day7 = screen.getByTestId("day-7");
+    expect(within(day7).getByText("Introduction to the Program")).toBeDefined();
+    expect(within(day7).getByText("7")).toBeDefined();
+
+    // Completed activity on the current day should be shown (in case you did it earlier in the day)
+    const day9 = screen.getByTestId("day-9");
+    expect(within(day9).getByText("9")).toBeDefined();
+    expect(screen.queryByText("The Science Behind Mindfulness")).toBeNull();
+  });
+
   it("shows loading spinner on first render (before data is loaded)", async () => {
     render(<Calendar date={new Date(1980, 11, 12)} />);
 

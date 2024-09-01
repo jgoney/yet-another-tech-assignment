@@ -17,6 +17,30 @@ export const WithToday: Story = {
 
 export const WithAnArbitraryDate: Story = {
   args: {
-    date: new Date(1980, 11, 12),
+    date: new Date(1980, 10, 12),
+  },
+};
+
+export const NoActivityIncompleteInQueue: Story = {
+  args: {
+    date: new Date(2024, 7, 15),
+  },
+};
+
+export const ActivityTodayIncompleteInQueue: Story = {
+  args: {
+    date: new Date(2024, 7, 16),
+  },
+};
+
+export const IncompletesPushedIntoNextWeek: Story = {
+  args: {
+    date: new Date(2024, 7, 19),
+  },
+};
+
+export const IncompletesPushedIntoLastWeekOfMonth: Story = {
+  args: {
+    date: new Date(2024, 7, 23),
   },
 };

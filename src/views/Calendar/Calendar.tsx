@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 
-import { format, isToday } from "date-fns";
+import { format, isSameDay } from "date-fns";
 
 import { Day, Placeholder } from "../../components/Day";
 import { Header } from "../../components/Header";
@@ -16,11 +16,12 @@ interface CalendarProps {
 }
 
 const Calendar = ({ date }: CalendarProps) => {
+  const today = date || new Date();
   const { loading, program, error } = useFetchProgramData();
 
   const calendar = useMemo(() => {
-    return getCalendar({ program, date });
-  }, [program, date]);
+    return getCalendar({ program, today });
+  }, [program, today]);
 
   // TODO: implement a proper loading spinner
   if (loading) {
@@ -41,7 +42,7 @@ const Calendar = ({ date }: CalendarProps) => {
           return (
             <Day
               key={i}
-              isToday={isToday(activity.date)}
+              isToday={isSameDay(today, activity.date)}
               date={format(activity.date, "d")}
               activityTitle={activity.title}
             />

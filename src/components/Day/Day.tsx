@@ -12,7 +12,7 @@ const Day = ({ activityTitle, date, isToday }: DayProps) => {
   const hasActivity = !!activityTitle;
 
   return (
-    <S.Wrapper $isToday={isToday}>
+    <S.Wrapper $isToday={isToday} data-testid={`day-${date}`}>
       <S.DayNumber $isToday={isToday} $hasActivity={hasActivity}>
         {date}
       </S.DayNumber>

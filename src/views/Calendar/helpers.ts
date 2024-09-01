@@ -12,7 +12,7 @@ import {
   isBefore,
 } from "date-fns";
 
-import type { Activity, Plan, Week, WeekNumber } from "../../types";
+import type { Activity, Plan, WeekNumber } from "../../types";
 
 interface GetCalendarParams {
   program?: Plan;
@@ -35,10 +35,9 @@ const getCalendar = ({
   // Subtract day number from 7 to get remaining placeholders for the week
   const endPlaceholders = Array(7 - getISODay(endOfMonth(today))).fill(null);
 
-  let plan: Week | null = null;
   let planKey: WeekNumber | null = null;
 
-  const queue: Array<Activity> = [];
+  const incompleteQueue: Array<Activity> = [];
   // Construct valid days for a given calendar month
   const days = Array(getDaysInMonth(today))
     .fill(null)
@@ -76,70 +75,40 @@ const getCalendar = ({
 
         if (planKey) {
           // Get that week's plan activities
-          plan = program[planKey];
+          const plan = program[planKey];
 
-          for (const [j, activity] of plan.entries()) {
+          for (const activity of plan) {
             if (activity.weekday === dayName) {
               if (activity.completed) {
                 // if weekday matches and activity is completed, show no matter what
+                // n.b., there shouldn't be completed tasks in the future, but this isn't
+                // really defined in the spec.
                 return {
                   date: d,
                   title: activity.title,
-                  completed: activity.completed,
-                } as Activity;
-              } else {
-                // if weekday matches and activity is not completed, never show, add to queue
-                if (isPast) {
-                  queue.push(activity);
-                  break;
-                } else {
-                  if (queue.length) {
-                    queue.push(activity);
-                    const act = queue.shift();
-                    return {
-                      date: d,
-                      title: act?.title,
-                      completed: act?.completed,
-                    } as Activity;
-                  } else {
-                    return {
-                      date: d,
-                      title: activity.title,
-                      completed: activity.completed,
-                    } as Activity;
-                  }
-                }
+                };
               }
-            } else {
-              // if weekday does not match, we're in the present/future, and
-              // there's an incomplete activity in the queue, pop it and display it
-              if (!isPast && queue.length && j === plan.length - 1) {
-                const act = queue.shift();
-                return {
-                  date: d,
-                  title: act?.title,
-                  completed: act?.completed,
-                } as Activity;
-              }
+              // otherwise, add activity to queue to be shown later
+              incompleteQueue.push(activity);
             }
           }
         }
       }
 
-      // Finally, check to see if we need to clear the queue from incomplete activities
-      if (!isPast && queue.length) {
-        const act = queue.shift();
+      // grab activites from the queue if we're not in the past
+      if (!isPast) {
+        const act = incompleteQueue.shift();
         return {
           date: d,
-          title: act?.title,
-          completed: act?.completed,
-        } as Activity;
+          title: act?.title || "",
+        };
       }
 
+      // Finally, return no activity title if there are none applicable
       return {
         date: d,
         title: "",
-      } as Activity;
+      };
     });
 
   return frontPlaceholders.concat(days, endPlaceholders);

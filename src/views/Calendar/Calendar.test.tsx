@@ -50,7 +50,7 @@ describe("Calendar", () => {
     // Ensure that the right number of days render (30 for November)
     expect(screen.getByRole("heading", { name: /30/i })).toBeDefined();
 
-    // Test content on a coupld random days
+    // Test content on a couple random days
     const day3 = screen.getByTestId("day-3");
     expect(within(day3).getByText("The Meru Health Program")).toBeDefined();
     expect(within(day3).getByText("3")).toBeDefined();
@@ -73,7 +73,7 @@ describe("Calendar", () => {
       expect(screen.getByText(/Weekly Program/i)).toBeDefined();
     });
 
-    // Test content on a coupld random days
+    // Test content on a couple random days
     const day16 = screen.getByTestId("day-16");
     expect(within(day16).getByText("Mindful Presence")).toBeDefined();
     expect(within(day16).getByText("16")).toBeDefined();
@@ -96,7 +96,7 @@ describe("Calendar", () => {
       expect(screen.getByText(/Weekly Program/i)).toBeDefined();
     });
 
-    // Test content on a coupld random days
+    // Test content on a couple random days
     const day19 = screen.getByTestId("day-19");
     expect(within(day19).getByText("Mindful Presence")).toBeDefined();
     expect(within(day19).getByText("19")).toBeDefined();
@@ -127,7 +127,7 @@ describe("Calendar", () => {
     );
   });
 
-  it("pushes queued activities to the following week if still incomplete", async () => {
+  it("pushes queued activities even into last week of month", async () => {
     render(<Calendar date={new Date(2024, 7, 23)} />);
 
     // Wait for title heading to be visible (i.e., data has loaded)
@@ -135,7 +135,7 @@ describe("Calendar", () => {
       expect(screen.getByText(/Weekly Program/i)).toBeDefined();
     });
 
-    // Test content on a coupld random days
+    // Test content on a couple random days
     const day23 = screen.getByTestId("day-23");
     expect(within(day23).getByText("Mindful Presence")).toBeDefined();
     expect(within(day23).getByText("23")).toBeDefined();
@@ -164,6 +164,41 @@ describe("Calendar", () => {
     getActivityTitles().map((title) =>
       expect(screen.getByText(title)).toBeDefined(),
     );
+  });
+
+  it("pushes queued activities into the next month (not shown)", async () => {
+    render(<Calendar date={new Date(2024, 7, 29)} />);
+
+    // Wait for title heading to be visible (i.e., data has loaded)
+    await waitFor(() => {
+      expect(screen.getByText(/Weekly Program/i)).toBeDefined();
+    });
+
+    // Test content on a couple random days
+    const day29 = screen.getByTestId("day-29");
+    expect(within(day29).getByText("Mindful Presence")).toBeDefined();
+    expect(within(day29).getByText("29")).toBeDefined();
+
+    const day30 = screen.getByTestId("day-30");
+    expect(within(day30).getByText("Consequences of Autopilot")).toBeDefined();
+    expect(within(day30).getByText("30")).toBeDefined();
+
+    const day31 = screen.getByTestId("day-31");
+    expect(within(day31).getByText("The Negativity Spiral")).toBeDefined();
+    expect(within(day31).getByText("31")).toBeDefined();
+
+    // Ensure that 2 activities pushed off page are not found
+    expect(screen.queryByText("Spiral of Negative Interpretations")).toBeNull();
+    expect(screen.queryByText("Interrupting the Negativity Spiral")).toBeNull();
+
+    // Ensure that activity titles are present in rendered calendar (aside from 2 pushed off the page)
+    getActivityTitles()
+      .filter(
+        (title) =>
+          title !== "Spiral of Negative Interpretations" &&
+          title !== "Interrupting the Negativity Spiral",
+      )
+      .map((title) => expect(screen.getByText(title)).toBeDefined());
   });
 
   it("shows loading spinner on first render (before data is loaded)", async () => {

@@ -44,3 +44,9 @@ export const IncompletesPushedIntoLastWeekOfMonth: Story = {
     date: new Date(2024, 7, 23),
   },
 };
+
+export const IncompletesPushedOffThePage: Story = {
+  args: {
+    date: new Date(2024, 7, 29),
+  },
+};

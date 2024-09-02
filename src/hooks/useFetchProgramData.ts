@@ -20,7 +20,6 @@ function useFetchProgramData(): ProgramFetcher {
         const json = await res.json();
         setData({ program: json, loading: false });
       } catch (error) {
-        // TODO: handle actual error here
         setData({
           error: new Error(`${error}`),
           loading: false,

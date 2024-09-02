@@ -15,6 +15,25 @@ import {
 
 import type { Activity, Plan, WeekNumber } from "../../types";
 
+type PlanKey = WeekNumber | null;
+
+function getNextPlanKey(planKey: PlanKey): PlanKey {
+  switch (planKey) {
+    case null: {
+      return "week1";
+    }
+    case "week1": {
+      return "week2";
+    }
+    case "week2": {
+      return "week3";
+    }
+    default: {
+      return null;
+    }
+  }
+}
+
 interface GetCalendarParams {
   program?: Plan;
   today: Date;
@@ -36,7 +55,7 @@ const getCalendar = ({
   // Subtract day number from 7 to get remaining placeholders for the week
   const endPlaceholders = Array(7 - getISODay(endOfMonth(today))).fill(null);
 
-  let planKey: WeekNumber | null = null;
+  let planKey: PlanKey = null;
 
   const incompleteQueue: Array<Activity> = [];
   // Construct valid days for a given calendar month
@@ -47,7 +66,6 @@ const getCalendar = ({
       const d = addDays(firstOfMonth, i);
       const dayName = format(d, "EEEE").toUpperCase();
 
-      // TODO: refactor
       const isFullWeek = isSameMonth(startOfISOWeek(d), endOfISOWeek(d));
       const isNewWeek = isMonday(d);
       const isPast = isBefore(d, today);
@@ -55,24 +73,7 @@ const getCalendar = ({
 
       if (isFullWeek) {
         if (isNewWeek) {
-          switch (planKey) {
-            case null: {
-              planKey = "week1";
-              break;
-            }
-            case "week1": {
-              planKey = "week2";
-              break;
-            }
-            case "week2": {
-              planKey = "week3";
-              break;
-            }
-            default: {
-              planKey = null;
-              break;
-            }
-          }
+          planKey = getNextPlanKey(planKey);
         }
 
         if (planKey) {

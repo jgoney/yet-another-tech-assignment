@@ -1,0 +1,66 @@
+{
+  "name": "technical-assignment-justin-goney",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "bunx --bun vite",
+    "build": "tsc && bunx --bun vite build",
+    "preview": "bunx --bun vite preview",
+    "format": "prettier . --write",
+    "lint": "bunx eslint .",
+    "test": "vitest",
+    "test-single": "vitest run",
+    "tsc": "tsc",
+    "check": "vitest run && tsc && bunx eslint . && prettier . --write",
+    "coverage": "vitest run --coverage",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "@fontsource-variable/libre-franklin": "^5.0.20",
+    "@fontsource-variable/work-sans": "^5.0.20",
+    "@fontsource/fjalla-one": "^5.0.14",
+    "date-fns": "^3.6.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "styled-components": "^6.1.12"
+  },
+  "devDependencies": {
+    "@chromatic-com/storybook": "^1.7.0",
+    "@eslint/js": "^9.9.1",
+    "@storybook/addon-essentials": "^8.2.9",
+    "@storybook/addon-interactions": "^8.2.9",
+    "@storybook/addon-links": "^8.2.9",
+    "@storybook/addon-themes": "^8.2.9",
+    "@storybook/blocks": "^8.2.9",
+    "@storybook/react": "^8.2.9",
+    "@storybook/react-vite": "^8.2.9",
+    "@storybook/test": "^8.2.9",
+    "@testing-library/react": "^16.0.0",
+    "@types/eslint-config-prettier": "^6.11.3",
+    "@types/eslint__js": "^8.42.3",
+    "@types/react": "^18.0.26",
+    "@types/react-dom": "^18.0.9",
+    "@vitejs/plugin-react-swc": "^3.0.0",
+    "@vitest/coverage-v8": "^2.0.5",
+    "eslint": "^9.9.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.35.0",
+    "eslint-plugin-storybook": "^0.8.0",
+    "globals": "^15.9.0",
+    "jsdom": "^24.1.1",
+    "msw": "^2.4.1",
+    "prettier": "3.3.3",
+    "storybook": "^8.2.9",
+    "typescript": "^4.9.3",
+    "typescript-eslint": "^8.3.0",
+    "vite": "^4.0.0",
+    "vitest": "^2.0.5"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
+  }
+}

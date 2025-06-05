@@ -59,3 +59,10 @@ typings/
 
 # next.js build output
 .next
+
+# Vite (and lots of other JS/TS builders) build output dir
+dist/
+
+# Storybook generated assets
+*storybook.log
+storybook-static/
